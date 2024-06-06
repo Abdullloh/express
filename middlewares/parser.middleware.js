@@ -1,12 +1,11 @@
-const parser  = (req,res)=>{
+const parser = (req, res) => {
+  res.writeHead(200, {
+    'Content-type': 'application/json',
+  });
 
-    res.writeHead(200,{
-        'Content-type':'application/json'
-    })
+  res.send = (data) => {
+    res.end(JSON.stringify(data));
+  };
+};
 
-    res.send = (data)=>{
-        res.end(JSON.stringify(data))
-    }
-}
-
-module.exports = parser
+module.exports = parser;

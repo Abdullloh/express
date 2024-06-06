@@ -1,11 +1,9 @@
-const Router = require('../framework/Router')
-const {createUser,getUsers} = require('../controller/user-controller')
-const router = new Router()
+const Router = require('../framework/Router');
+const { createUser, getUsers } = require('../controller/user-controller');
+const router = new Router();
 
+router.get('/users', getUsers);
 
-router.get('/users', getUsers )
+router.post('/users', createUser);
 
-router.post('/users', createUser )
-
-
-module.exports = router
+module.exports = router;

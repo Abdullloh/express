@@ -1,22 +1,21 @@
 
-const usersJson = [{id:'1',name:'Abdulloh'},{id:'2' , name:'Alisher'}]
+const User = require('../src/user-schema')
 
-const getUsers = (req,res)=>{
-    console.log(req.params);
+const getUsers = async (req,res)=>{
+    let users;
     if(req.params.id){
-        const data = usersJson.find(user=> user.id === req.params.id)
-        return res.send(data)
+        users = await User.findById(req.params.id)
+         res.send(users)
+    }else {
+        users = await User.find()
+        res.send(users)
     }
-   res.send(usersJson)
 }
 
 
-const createUser = (req,res)=>{
-    // console.log(req.body);
-    const user = req.body
-    usersJson.push(user)
-    // console.log(usersJson);
-    res.send(usersJson)
+const createUser = async (req,res)=>{
+    const user = await User.create(req.body)
+    res.send(user)
 }
 
 module.exports = {getUsers,createUser}
