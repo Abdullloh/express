@@ -5,6 +5,15 @@ const parserMiddleware = require('./middlewares/parser.middleware');
 const parserUrl = require('./middlewares/parser-url');
 const mongoose = require('mongoose');
 const app = new Applicaiton();
+const cors = require('cors');
+
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  }),
+);
 
 app.use(parserMiddleware);
 app.use(parserUrl('http://localhost:5001/'));
